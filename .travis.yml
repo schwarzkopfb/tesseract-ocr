@@ -1,7 +1,10 @@
 language: node_js
 
+sudo: true
+
 before_install:
-  - apt-get install tesseract-ocr
+  - sudo apt-get -qq update
+  - sudo apt-get install tesseract-ocr
 
 node_js:
 #  - "8"
