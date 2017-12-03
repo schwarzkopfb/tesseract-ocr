@@ -4,9 +4,7 @@ sudo: true
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install tesseract-ocr-eng
-  - sudo apt-get install tesseract-ocr-hun
-  - which tesseract
+  - sudo apt-get install tesseract-ocr-eng tesseract-ocr-hun
   - tesseract -h
 
 node_js:
