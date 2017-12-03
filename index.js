@@ -236,6 +236,12 @@ function listLanguages(execPath, callback) {
                 onError(err)
             else
                 exec(`${tesseract} --list-langs`, (err, stdout, stderr) => {
+                    console.log()
+                    console.log()
+                    console.log(stdout)
+                    console.log()
+                    console.log()
+
                     /* istanbul ignore next */
                     // hypothetically impossible :) //
                     if (err)
