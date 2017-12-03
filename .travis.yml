@@ -5,7 +5,7 @@ sudo: true
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-hun
-  - tesseract --list-languages
+  - tesseract --list-langs
 
 node_js:
   - "8"
