@@ -236,24 +236,16 @@ function listLanguages(execPath, callback) {
                 onError(err)
             else
                 exec(`${tesseract} --list-langs`, (err, stdout, stderr) => {
-                    console.log()
-                    console.log()
-                    console.log(err)
-                    console.log()
-                    console.log()
-                    console.log(stdout)
-                    console.log()
-                    console.log()
-                    console.log(stderr)
-                    console.log()
-                    console.log()
-
                     /* istanbul ignore next */
                     // hypothetically impossible :) //
                     if (err)
                         onError(new IECE('tesseract exited with non-zero exit code. See err.exitCode, err.signal or err.stderr for more information', err.code, err.signal, stderr))
                     else {
-                        const list = stdout
+                        // !HACKERY WARNING!
+                        // due to inconsistencies between
+                        // tesseract implementations across platforms,
+                        // we need to check stderr as well
+                        const list = (stdout || stderr)
                             .split('\n')
                             .filter(lang => RX_LANG.test(lang))
                             .sort()
