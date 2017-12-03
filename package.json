@@ -1,0 +1,36 @@
+{
+  "name": "tesseract-ocr",
+  "version": "1.0.0-undocumented.0",
+  "description": "Node.js wrapper for Tesseract OCR CLI.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/**",
+    "cover": "npm test -- --cov --coverage-report=lcov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schwarzkopfb/tesseract-ocr.git"
+  },
+  "keywords": [
+    "tesseract",
+    "ocr",
+    "optical",
+    "character",
+    "recognition"
+  ],
+  "author": "Schwarzkopf Balazs <schwarzkopfb@icloud.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/schwarzkopfb/tesseract-ocr/issues"
+  },
+  "homepage": "https://github.com/schwarzkopfb/tesseract-ocr#readme",
+  "dependencies": {
+    "cer": "^1.0.0",
+    "destroy": "^1.0.4",
+    "once": "^1.4.0",
+    "which": "^1.3.0"
+  },
+  "devDependencies": {
+    "tap": "^11.0.0"
+  }
+}
