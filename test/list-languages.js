@@ -38,12 +38,12 @@ function compare(required, provided) {
 }
 
 list().then(actual => {
-    test.ok(compare(actual, expected))
+    test.ok(compare(expected, actual))
 
     list(ep, (err, actual) => {
         if (err)
             test.threw(err)
         else
-            test.ok(compare(actual, expected))
+            test.ok(compare(expected, actual))
     })
 })
