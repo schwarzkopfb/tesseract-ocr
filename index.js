@@ -238,7 +238,13 @@ function listLanguages(execPath, callback) {
                 exec(`${tesseract} --list-langs`, (err, stdout, stderr) => {
                     console.log()
                     console.log()
+                    console.log(err)
+                    console.log()
+                    console.log()
                     console.log(stdout)
+                    console.log()
+                    console.log()
+                    console.log(stderr)
                     console.log()
                     console.log()
 
