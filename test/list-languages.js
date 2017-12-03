@@ -20,13 +20,9 @@ function compare(required, provided) {
 }
 
 list().then(actual => {
-    test.comment(expected, actual)
-
     test.ok(compare(expected, actual))
 
     list(ep, (err, actual) => {
-        test.comment(expected, actual)
-
         if (err)
             test.threw(err)
         else

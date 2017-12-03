@@ -9,7 +9,7 @@ exports.listLanguages = listLanguages
 exports.recognize = recognize
 exports.default = recognize
 
-const RX_LANG = /^[a-z]{3}(_[a-z]{3,4})?$/
+const RX_LANG = /^\w*?[a-z]{3}(_[a-z]{3,4})?\w*?$/
 
 const EE       = require('events'),
       assert   = require('assert'),
