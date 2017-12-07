@@ -248,7 +248,6 @@ function listLanguages(execPath, callback) {
                         const list = (stdout || stderr)
                             .split('\n')
                             .filter(lang => RX_LANG.test(lang))
-                            .sort()
 
                         process.nextTick(() => {
                             if (callback)
