@@ -1,13 +1,13 @@
-[![view on npm](http://img.shields.io/npm/v/tesseract-ocr.svg?style=flat-square)](https://www.npmjs.com/package/tesseract-ocr)
-[![downloads per month](http://img.shields.io/npm/dm/tesseract-ocr.svg?style=flat-square)](https://www.npmjs.com/package/tesseract-ocr)
+[![view on npm](http://img.shields.io/npm/v/tesseractocr.svg?style=flat-square)](https://www.npmjs.com/package/tesseractocr)
+[![downloads per month](http://img.shields.io/npm/dm/tesseractocr.svg?style=flat-square)](https://www.npmjs.com/package/tesseractocr)
 [![node version](https://img.shields.io/badge/node-%3E=4-brightgreen.svg?style=flat-square)](https://nodejs.org/download)
-[![build status](https://img.shields.io/travis/schwarzkopfb/tesseract-ocr.svg?style=flat-square)](https://travis-ci.org/schwarzkopfb/tesseract-ocr)
-[![test coverage](https://img.shields.io/coveralls/schwarzkopfb/tesseract-ocr.svg?style=flat-square)](https://coveralls.io/github/schwarzkopfb/tesseract-ocr)
-[![license](https://img.shields.io/npm/l/tesseract-ocr.svg?style=flat-square)](https://github.com/schwarzkopfb/tesseract-ocr/blob/master/LICENSE)
+[![build status](https://img.shields.io/travis/schwarzkopfb/tesseractocr.svg?style=flat-square)](https://travis-ci.org/schwarzkopfb/tesseractocr)
+[![test coverage](https://img.shields.io/coveralls/schwarzkopfb/tesseractocr.svg?style=flat-square)](https://coveralls.io/github/schwarzkopfb/tesseractocr)
+[![license](https://img.shields.io/npm/l/tesseractocr.svg?style=flat-square)](https://github.com/schwarzkopfb/tesseractocr/blob/master/LICENSE)
 
-# tesseract-ocr
+# Tesseract OCR for Node.js
 
-Simple and modern Node.js wrapper for Tesseract OCR CLI.
+Simple and modern Node.js wrapper implementation for Tesseract OCR CLI.
 
 ## Features & Advantages
 
@@ -20,7 +20,7 @@ Simple and modern Node.js wrapper for Tesseract OCR CLI.
 ## Usage
 
 ```js
-const recognize = require('tesseract-ocr')
+const recognize = require('tesseractocr')
 
 recognize(`${__dirname}/image.png`, (err, text) => {
     if (err)
@@ -47,7 +47,11 @@ The above will install all of the language packages available, if you don't need
 
 You can then go about installing the Node.js package to expose the JavaScript API:
 
-    npm install tesseract-ocr
+    npm install tesseractocr
+
+## Tests and benchmarks
+
+Clone the repo, `npm install` and then `npm test` or `npm run benchmarks`.
 
 ## License
 

@@ -1,6 +1,6 @@
 {
-  "name": "tesseract-ocr",
-  "version": "1.0.0-undocumented.0",
+  "name": "tesseractocr",
+  "version": "1.0.0",
   "description": "Node.js wrapper for Tesseract OCR CLI.",
   "main": "index.js",
   "scripts": {
