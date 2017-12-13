@@ -33,7 +33,7 @@ recognize(`${__dirname}/image.png`, (err, text) => {
 
 ## Complete API docs
 
-__TODO__
+The complete API documentation can be found [here](/docs.md)
 
 ## Installation
 
