@@ -10,7 +10,7 @@ const tesseract = require('tesseractocr')
 
 Pass an image to Tesseract to recognize text from it.
 This method spawns a new tesseract process with the given options and streams the source into it. 
-Callback is fired when the child process get finished.
+Callback is fired when the child process gets finished.
 
 * `source` can be a file path, a `stream.Readable` or a `Buffer`
 * `options` is an object containing options for the recognition process. All the following options are optional:
@@ -83,7 +83,7 @@ recognize('source', (err, text) => { /* ... */ })
 ### #2
 
 All the methods of this module are supporting both callback and promise based usage.
-That means they're working well with async functions:
+That means these are working well with async functions:
 
 ```js
 async function parseTextFromImage(source) {
