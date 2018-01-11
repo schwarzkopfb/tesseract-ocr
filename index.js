@@ -87,6 +87,10 @@ function getArgs(options) {
 
     if (lang)
         args.push('-l', lang)
+      
+    if (options.configs)
+      args.push('-c', options.configs)
+
 
     const tessdataDir =
         options.dataDir ||
