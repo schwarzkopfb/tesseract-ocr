@@ -86,12 +86,8 @@ function getArgs(options) {
         lang = lang.join('+')
 
     if (lang)
-        args.push('-l', lang)
+        args.push('-l', lang)      
       
-    if (options.configs)
-      args.push('-c', options.configs)
-
-
     const tessdataDir =
         options.dataDir ||
         options.tessdataDir ||
@@ -126,7 +122,10 @@ function getArgs(options) {
     if (!isNaN(oem)) {
         assert(oem >= 0 && oem <= 3, 'OCR engine mode must be between 0 and 3')
         args.push('--oem', oem)
-    }
+    }   
+      
+    if (options.configs)
+      args.push('-c', options.configs)
 
     return args
 }
