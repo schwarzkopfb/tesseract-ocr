@@ -11,7 +11,8 @@ exports.default = recognize
 
 const RX_LANG = /^\w*?[a-z]{3}(_[a-z]{3,4})?\w*?$/
 
-const EE       = require('events'),
+const push     = Array.prototype.push,
+      EE       = require('events'),
       assert   = require('assert'),
       stream   = require('stream'),
       Duplex   = stream.Duplex,
@@ -86,7 +87,7 @@ function getArgs(options) {
         lang = lang.join('+')
 
     if (lang)
-        args.push('-l', lang)      
+        args.push('-l', lang)
       
     const tessdataDir =
         options.dataDir ||
@@ -122,10 +123,40 @@ function getArgs(options) {
     if (!isNaN(oem)) {
         assert(oem >= 0 && oem <= 3, 'OCR engine mode must be between 0 and 3')
         args.push('--oem', oem)
-    }   
-      
-    if (options.configs)
-      args.push('-c', options.configs)
+    }
+
+    let confs =
+        options.c ||
+        options.conf ||
+        options.confs ||
+        options.configs
+
+    if (confs) {
+        if (typeof confs === 'string')
+            confs = [ '-c', confs ]
+        else if (Array.isArray(confs))
+            confs = confs.reduce((out, conf) => {
+                out.push('-c', conf)
+                return out
+            }, [])
+        else {
+            assert(confs instanceof Object, 'configs option must be string, array of strings or object')
+
+            const out = []
+
+            for (let key in confs) {
+                /* istanbul ignore next */
+                if (!confs.hasOwnProperty(key))
+                    continue
+
+                out.push('-c', `${key}=${confs[ key ]}`)
+            }
+
+            confs = out
+        }
+
+        push.apply(args, confs)
+    }
 
     return args
 }
