@@ -1,6 +1,6 @@
 {
   "name": "tesseractocr",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Node.js wrapper for Tesseract OCR CLI.",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,11 @@
     "ocr",
     "optical",
     "character",
-    "recognition"
+    "recognition",
+    "text",
+    "string",
+    "reading",
+    "scanning"
   ],
   "author": "Schwarzkopf Balazs <schwarzkopfb@icloud.com>",
   "license": "MIT",

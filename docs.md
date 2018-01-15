@@ -18,7 +18,9 @@ Callback is fired when the child process gets finished.
     * `language` specify language(s) used for OCR. This can be a string or an array of strings
     * `tessdataDir` specify the location of tessdata path
     * `userWords` specify the location of user words file
-    * `userPatterns` secify the location of user patterns file
+    * `userPatterns` specify the location of user patterns file
+    * `config` set value for config variables. This can be a string, an array of strings or an object specifying key-value pairs
+    * `configfiles` One or more file path(s) pointing to tesseract configuration files. This can be a string or an array of strings
     * `psm` specify page segmentation mode
     * `oem` specify OCR Engine mode
 * `callback(err, text)` an optional error-first callback function
