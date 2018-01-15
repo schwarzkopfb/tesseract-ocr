@@ -26,7 +26,11 @@ const opts = [
     { c: 'TEST1=TEST' },
     { conf: 'test2=test' },
     { confs: [ 't3=test', 't4=test' ] },
-    { configs: { t5: 'test', t6: 'test' } }
+    { configs: { t5: 'test', t6: 'test' } },
+    { configfile: 'test.conf' },
+    { l: 'eng', configFile: 'test.conf' },
+    { configfiles: 'test.conf', psm: 3 },
+    { configFiles: [ 'test1.conf', 'test2.conf' ], oem: 3 }
 ]
 
 const expected = [
@@ -42,7 +46,11 @@ const expected = [
     [ 'stdin', 'stdout', '-c', 'TEST1=TEST' ],
     [ 'stdin', 'stdout', '-c', 'test2=test' ],
     [ 'stdin', 'stdout', '-c', 't3=test', '-c', 't4=test' ],
-    [ 'stdin', 'stdout', '-c', 't5=test', '-c', 't6=test' ]
+    [ 'stdin', 'stdout', '-c', 't5=test', '-c', 't6=test' ],
+    [ 'stdin', 'stdout', 'test.conf' ],
+    [ 'stdin', 'stdout', '-l', 'eng', 'test.conf' ],
+    [ 'stdin', 'stdout', '--psm', 3, 'test.conf' ],
+    [ 'stdin', 'stdout', '--oem', 3, 'test1.conf', 'test2.conf' ]
 ]
 
 let counter = 0

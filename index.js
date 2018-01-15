@@ -158,6 +158,22 @@ function getArgs(options) {
         push.apply(args, confs)
     }
 
+    let cfiles =
+        options.configfile ||
+        options.configfiles ||
+        options.configFile ||
+        options.configFiles
+
+    if (cfiles) {
+        if (typeof cfiles === 'string')
+            args.push(cfiles)
+        else {
+            assert(Array.isArray(cfiles), 'configfile option must be string or array of strings')
+
+            push.apply(args, cfiles)
+        }
+    }
+
     return args
 }
 
