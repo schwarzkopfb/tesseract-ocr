@@ -88,7 +88,7 @@ function getArgs(options) {
 
     if (lang)
         args.push('-l', lang)
-      
+
     const tessdataDir =
         options.dataDir ||
         options.tessdataDir ||
@@ -129,6 +129,7 @@ function getArgs(options) {
         options.c ||
         options.conf ||
         options.confs ||
+        options.config ||
         options.configs
 
     if (confs) {
