@@ -219,6 +219,7 @@ function recognize(source, options, callback) {
 
             child.stdout.on('data', chunk => stdout += chunk)
             child.stderr.on('data', chunk => stderr += chunk)
+            recognize.on('abort', onAbort)
 
             child
                 .on('error', onError)
@@ -263,6 +264,18 @@ function recognize(source, options, callback) {
 
                 if (transform)
                     destroy(transform)
+            }
+
+            function onAbort() {
+                child.kill(`SIGKILL`)
+                onExit()
+                process.nextTick(() => {
+
+                    if (callback)
+                        callback(null)
+                    else
+                        resolve(null)
+                })
             }
         })
     })
