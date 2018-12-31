@@ -1,0 +1,20 @@
+'use strict'
+
+const test      = require('tap'),
+      path      = require('path'),
+      recognize = require('..')
+
+test.plan(1)
+
+const ocr = () => recognize(path.join(__dirname, 'fixtures', 'nyt.png'),{}).then(result => {
+    return test.equals(result, null)
+})
+
+const bail = () => Promise.resolve(sleep(1500)).then(() => recognize.emit('abort'))
+
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+Promise.all([ocr(), bail()]).catch(test.threw)
