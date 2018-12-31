@@ -7,6 +7,7 @@ exports.recognizeWithOptions = recognizeWithOptions
 exports.list =
 exports.listLanguages = listLanguages
 exports.recognize = recognize
+exports.cancel = cancel
 exports.default = recognize
 
 const RX_LANG = /^\w*?[a-z]{3}(_[a-z]{3,4})?\w*?$/
@@ -182,6 +183,10 @@ function recognizeWithOptions(options) {
     return function recognizeWithOptions(source, callback) {
         return recognize(source, options, callback)
     }
+}
+
+function cancel() {
+    recognize.emit('abort')
 }
 
 function recognize(source, options, callback) {

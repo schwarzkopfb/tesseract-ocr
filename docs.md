@@ -70,6 +70,19 @@ tesseract.listLanguages('/usr/local/bin/tesseract', (err, list) => { /* ... */ }
 tesseract.listLanguages().then(console.log, console.error)
 ```
 
+### recognize.cancel() : `undefined`
+
+Abort an ongoing recognition process.
+
+#### Examples
+
+```js
+const recognize = tesseract.recognize(/* ... */)
+
+// ... for e.g. an http server...
+request.on('timeout', recognize.cancel)
+```
+
 ## Notes
 
 ### #1
@@ -96,13 +109,4 @@ async function parseTextFromImage(source) {
 
     return text
 }
-```
-### #3
-
-Recognition can be aborted in the event of e.g. a client timeout. This kills the Tesseract child process, and returns `null` :
-
-```js
-
-request.on('timeout', () => recognize.emit('abort'))
-
 ```

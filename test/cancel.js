@@ -10,8 +10,7 @@ const ocr = () => recognize(path.join(__dirname, 'fixtures', 'nyt.png'),{}).then
     return test.equals(result, null)
 })
 
-const bail = () => Promise.resolve(sleep(1500)).then(() => recognize.emit('abort'))
-
+const bail = () => Promise.resolve(sleep(1500)).then(recognize.cancel)
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
