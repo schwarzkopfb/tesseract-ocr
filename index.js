@@ -277,9 +277,9 @@ function recognize(source, options, callback) {
                 process.nextTick(() => {
 
                     if (callback)
-                        callback(null)
+                        callback()
                     else
-                        resolve(null)
+                        resolve()
                 })
             }
         })
