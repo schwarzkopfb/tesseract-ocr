@@ -53,6 +53,10 @@ You can then go about installing the Node.js package to expose the JavaScript AP
 
 Clone the repo, `npm install` and then `npm test` or `npm run benchmarks`.
 
+## Changelog
+
+The project's changelog is available [here](/changelog.md)
+
 ## License
 
 [MIT](/LICENSE)

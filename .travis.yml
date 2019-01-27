@@ -7,6 +7,9 @@ before_install:
   - sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-hun
 
 node_js:
+  - "11"
+  - "10"
+  - "9"
   - "8"
   - "7"
   - "6"

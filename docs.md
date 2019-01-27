@@ -9,7 +9,7 @@ const tesseract = require('tesseractocr')
 ### tesseract.recognize(source, [options], [callback]) : Promise
 
 Pass an image to Tesseract to recognize text from it.
-This method spawns a new tesseract process with the given options and streams the source into it. 
+This method spawns a new tesseract process with the given options and streams the source into it.
 Callback is fired when the child process gets finished.
 
 * `source` can be a file path, a `stream.Readable` or a `Buffer`
@@ -53,7 +53,36 @@ recognize(Buffer.from(/* ... */), (err, text) => { /* ... */ })
 recognize(fs.createReadStream(/* ... */), (err, text) => { /* ... */ })
 recognize('image.jpeg', (err, text) => { /* ... */ })
 recognize('image.tiff').then(console.log, console.error)
-``` 
+```
+
+### recognize.cancel(promise) : `undefined`
+
+Abort an ongoing recognition process.
+
+#### Examples
+
+```js
+const proc = tesseract.recognize(source)
+
+// ... for e.g. an http server...
+request.on('timeout', recgnize.cancel(proc))
+```
+
+### recognize.cancelAll() : `undefined`
+
+Abort all the ongoing recognition processes.
+
+#### Examples
+
+```js
+for (let i = 0; i < 10; i++) {
+    tesseract
+        .recognize(source + i)
+        .then(console.log)
+}
+
+process.on('exit', recognize.cancelAll())
+```
 
 ### tesseract.listLanguages([execPath], [callback]) : Promise
 
@@ -77,7 +106,7 @@ tesseract.listLanguages().then(console.log, console.error)
 The module's main export is the `recognize()` method itself, so you can simply:
 
 ```js
-const recognize = require('tesseractocr') 
+const recognize = require('tesseractocr')
 
 recognize('source', (err, text) => { /* ... */ })
 ```
@@ -90,10 +119,26 @@ That means these are working well with async functions:
 ```js
 async function parseTextFromImage(source) {
     let text = await recognize(source)
-    
-    // do stuffs with recognized text...
+
+    // do stuff with recognized text...
     text = text.split(' ')
-    
+
     return text
 }
 ```  
+
+### #3
+
+Recognition can be aborted in the event of e.g. a client timeout. This terminates the given Tesseract child process:
+
+```js
+const proc = reconize(source)
+
+request.on('timeout', () => recognize.cancel(proc))
+```
+
+It's also possible to terminate all the in-progress Tesseract processes in the event of e.g. force shutdown:
+
+```js
+process.on('exit', recognize.cancelAll())
+```

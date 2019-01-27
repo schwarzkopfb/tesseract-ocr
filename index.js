@@ -7,7 +7,10 @@ exports.recognizeWithOptions = recognizeWithOptions
 exports.list =
 exports.listLanguages = listLanguages
 exports.recognize = recognize
+exports.cancel = cancel
+exports.cancelAll = cancelAll
 exports.default = recognize
+exports.processCount = processCount
 
 const RX_LANG = /^\w*?[a-z]{3}(_[a-z]{3,4})?\w*?$/
 
@@ -25,7 +28,8 @@ const push     = Array.prototype.push,
       error    = require('cer'),
       which    = require('which'),
       destroy  = require('destroy'),
-      IECE     = error('InvalidExitCodeError', initInvalidExitCodeError)
+      IECE     = error('InvalidExitCodeError', initInvalidExitCodeError),
+      procs    = new Map // map for tracking in-progress recognition processes
 
 // make recognize() an EventEmitter to be able to fire 'warning' events when necessary
 Object.setPrototypeOf(recognize, EE.prototype)
@@ -187,9 +191,14 @@ function recognizeWithOptions(options) {
 function recognize(source, options, callback) {
     assert(source, 'source parameter is required')
 
-    if (typeof options === 'function') {
-        callback = options
-        options = {}
+    switch (typeof options) {
+        case 'function':
+            callback = options
+            options = {}
+            break
+
+        case 'undefined':
+            options = {}
     }
 
     if (callback) {
@@ -197,7 +206,7 @@ function recognize(source, options, callback) {
         callback = once(callback)
     }
 
-    return new Promise((resolve, reject) => {
+    const p = new Promise((resolve, reject) => {
         getBinaryPath(options, (err, tesseract) => {
             let child, stream, transform,
                 stdout = '',
@@ -245,6 +254,11 @@ function recognize(source, options, callback) {
             stream.on('error', onError)
             transform.on('error', onError)
 
+            process.nextTick(() => {
+                procs.set(p, child)
+                recognize.emit('started', p)
+            })
+
             function onError(err) {
                 onExit()
 
@@ -258,6 +272,11 @@ function recognize(source, options, callback) {
             }
 
             function onExit() {
+                process.nextTick(() => {
+                    procs.delete(p)
+                    recognize.emit('finished', p)
+                })
+
                 if (stream)
                     destroy(stream)
 
@@ -266,6 +285,23 @@ function recognize(source, options, callback) {
             }
         })
     })
+
+    return p
+}
+
+function cancel(promise) {
+    const proc = procs.get(promise)
+
+    if (proc)
+        proc.kill()
+}
+
+function cancelAll() {
+    procs.forEach(proc => proc.kill())
+}
+
+function processCount() {
+    return procs.size
 }
 
 function listLanguages(execPath, callback) {
