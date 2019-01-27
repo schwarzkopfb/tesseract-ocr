@@ -55,7 +55,7 @@ recognize('image.jpeg', (err, text) => { /* ... */ })
 recognize('image.tiff').then(console.log, console.error)
 ```
 
-### recognize.cancel(promise) : `undefined`
+### recognize.cancel(promise) : undefined
 
 Abort an ongoing recognition process.
 
@@ -65,10 +65,10 @@ Abort an ongoing recognition process.
 const proc = tesseract.recognize(source)
 
 // ... for e.g. an http server...
-request.on('timeout', recgnize.cancel(proc))
+request.on('timeout', () => recgnize.cancel(proc))
 ```
 
-### recognize.cancelAll() : `undefined`
+### recognize.cancelAll() : undefined
 
 Abort all the ongoing recognition processes.
 
@@ -81,7 +81,7 @@ for (let i = 0; i < 10; i++) {
         .then(console.log)
 }
 
-process.on('exit', recognize.cancelAll())
+process.on('exit', () => recognize.cancelAll())
 ```
 
 ### tesseract.listLanguages([execPath], [callback]) : Promise
