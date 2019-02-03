@@ -55,7 +55,9 @@ recognize('image.jpeg', (err, text) => { /* ... */ })
 recognize('image.tiff').then(console.log, console.error)
 ```
 
-### recognize.cancel(promise) : undefined
+### tesseract.recognize.cancel(promise) : undefined
+
+* `promise` the `Promise` instance returned by the `recognize()` call that initiated the given recognition process.
 
 Abort an ongoing recognition process.
 
@@ -65,10 +67,10 @@ Abort an ongoing recognition process.
 const proc = tesseract.recognize(source)
 
 // ... for e.g. an http server...
-request.on('timeout', () => recgnize.cancel(proc))
+request.on('timeout', () => tesseract.recognize.cancel(proc))
 ```
 
-### recognize.cancelAll() : undefined
+### tesseract.recognize.cancelAll() : undefined
 
 Abort all the ongoing recognition processes.
 
@@ -81,7 +83,7 @@ for (let i = 0; i < 10; i++) {
         .then(console.log)
 }
 
-process.on('exit', () => recognize.cancelAll())
+process.on('exit', () => tesseract.recognize.cancelAll())
 ```
 
 ### tesseract.listLanguages([execPath], [callback]) : Promise
@@ -140,5 +142,5 @@ request.on('timeout', () => recognize.cancel(proc))
 It's also possible to terminate all the in-progress Tesseract processes in the event of e.g. force shutdown:
 
 ```js
-process.on('exit', recognize.cancelAll())
+process.on('exit', () => recognize.cancelAll())
 ```
