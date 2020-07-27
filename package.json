@@ -11,7 +11,7 @@
     "lib/"
   ],
   "scripts": {
-    "bump": "npm version -m \"build: bump to %s\"",
+    "bump": "npm version -m \"chore: bump to %s\"",
     "preversion": "npm test && npm run build",
     "postpublish": "git add .; git push origin --all; git push origin --tags",
     "test": "./test/test.sh",
