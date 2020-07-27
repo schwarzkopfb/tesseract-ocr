@@ -23,6 +23,7 @@ Callback is fired when the child process gets finished.
     * `configfiles` One or more file path(s) pointing to tesseract configuration files. This can be a string or an array of strings
     * `psm` specify page segmentation mode
     * `oem` specify OCR Engine mode
+    * `output` specify the output format. Valid values are: `"alto"`, `"hocr"`, `"pdf"`, `"tsv"` or `"txt"`. It's an alias for the `configfiles` option which makes the JS API more expressive. Check out the CONFIGFILES part of tesseract [docs](https://github.com/tesseract-ocr/tesseract/blob/master/doc/tesseract.1.asc#options) for more information.
 * `callback(err, text)` an optional error-first callback function
 
 #### Examples
