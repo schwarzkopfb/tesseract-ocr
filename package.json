@@ -8,8 +8,8 @@
     "import": "lib/recognize.mjs"
   },
   "scripts": {
-    "preversion": "npm test",
-    "postpublish": "git push origin --all; git push origin --tags",
+    "preversion": "npm test && npm run build",
+    "postpublish": "git add .; git push origin --all; git push origin --tags",
     "test": "./scripts/test.sh",
     "build": "gen-esm-wrapper . lib/recognize.mjs --exclude=^_",
     "cover": "npm test -- --cov --coverage-report=lcov"
