@@ -6,9 +6,6 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-hun
 
-install:
-  - npm ci
-
 # keep the npm cache around to speed up installs
 cache:
   directories:
@@ -16,9 +13,6 @@ cache:
 
 node_js:
   - "14"
-  - "13"
   - "12"
-  - "11"
   - "10"
-  - "9"
   - "8"
