@@ -6,15 +6,19 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-hun
 
+install:
+  - npm ci
+
+# keep the npm cache around to speed up installs
+cache:
+  directories:
+    - "$HOME/.npm"
+
 node_js:
+  - "14"
+  - "13"
+  - "12"
   - "11"
   - "10"
   - "9"
   - "8"
-  - "7"
-  - "6"
-# nyc's dep 'find-up' fails on this version of Node
-# however, nyc is a dev dep and the package vorks without it,
-# so these envs are disabled temporally until 'find-up' gets fixed
-#  - "5"
-#  - "4"
