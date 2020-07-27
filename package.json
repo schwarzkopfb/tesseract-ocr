@@ -1,10 +1,17 @@
 {
   "name": "tesseractocr",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "Node.js wrapper for Tesseract OCR CLI.",
-  "main": "index.js",
+  "main": "lib/recognize.js",
+  "exports": {
+    "require": "lib/recognize.js",
+    "import": "lib/recognize.mjs"
+  },
   "scripts": {
-    "test": "tap test/*.js",
+    "preversion": "npm test",
+    "postpublish": "git push origin --all; git push origin --tags",
+    "test": "./scripts/test.sh",
+    "build": "gen-esm-wrapper . lib/recognize.mjs --exclude=^_",
     "cover": "npm test -- --cov --coverage-report=lcov"
   },
   "repository": {
@@ -29,12 +36,20 @@
   },
   "homepage": "https://github.com/schwarzkopfb/tesseract-ocr#readme",
   "dependencies": {
-    "cer": "^1.0.0",
     "destroy": "^1.0.4",
     "once": "^1.4.0",
-    "which": "^1.3.1"
+    "which": "^2.0.2"
   },
   "devDependencies": {
-    "tap": "^12.4.0"
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.1",
+    "gen-esm-wrapper": "^1.1.0",
+    "husky": "^4.2.5",
+    "tap": "^14.10.8"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
