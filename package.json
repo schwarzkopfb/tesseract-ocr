@@ -1,6 +1,6 @@
 {
   "name": "tesseractocr",
-  "version": "2.0.0",
+  "version": "2.0.0-rc.1",
   "description": "Node.js wrapper for Tesseract OCR CLI.",
   "main": "lib/recognize.js",
   "exports": {
@@ -11,7 +11,7 @@
     "lib/"
   ],
   "scripts": {
-    "bump": "npm version -m \"bump: %s\"",
+    "bump": "npm version -m \"build: bump to %s\"",
     "preversion": "npm test && npm run build",
     "postpublish": "git add .; git push origin --all; git push origin --tags",
     "test": "./test/test.sh",
