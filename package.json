@@ -4,8 +4,8 @@
   "description": "Node.js wrapper for Tesseract OCR CLI.",
   "main": "lib/recognize.js",
   "exports": {
-    "require": "lib/recognize.js",
-    "import": "lib/recognize.mjs"
+    "require": "./lib/recognize.js",
+    "import": "./lib/recognize.mjs"
   },
   "files": [
     "lib/"
