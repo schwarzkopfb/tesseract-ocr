@@ -46,7 +46,8 @@ Parameters are identical to `recognize()`.
 ```js
 const recognize = tesseract.withOptions({
     psm: 4,
-    language: [ 'fin', 'eng' ]
+    language: [ 'fin', 'eng' ],
+    config: ['tessedit_do_invert=0']
 })
 
 recognize(`${__dirname}/image.png`, (err, text) => { /* ... */ })
