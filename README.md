@@ -20,7 +20,7 @@ Simple and modern Node.js wrapper implementation for Tesseract OCR CLI.
 ## Usage
 
 ```js
-const recognize = require('tesseractocr')
+import recognize from 'tesseractocr'
 
 async function main() {
     const text = await recognize(`${__dirname}/image.png`)
